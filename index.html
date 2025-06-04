@@ -84,6 +84,7 @@
       <button>End Timer</button>
       <button>Console Trace</button>
       <button>Trigger a Global Error</button>
+      <div id="team-output"></div>
     </section>
   </main>
 
@@ -139,7 +140,7 @@
       console.groupEnd();
     });
     errorBtns[10].addEventListener("click", () => {
-      console.table([
+      const team = [
         { name: "Gautam", role: "Team Lead Dictator"},
         { name: "Carl", role: "GLUE GUYYY RAHHHH" },
         { name: "Vicky", role: "UI QUEEN" },
@@ -149,7 +150,25 @@
         { name: "Eric", role: "He's just there :)" },
         { name: "Mark", role: "TESTING GENIUSSSS" },
         { name: "Kilhoon", role: "JSDocs Savior" }
-      ]);
+    ];
+      try {
+        const outputBox = document.querySelector("#team-output");
+
+        if(!outputBox){
+          throw new Error("team-output div is not there");
+        }
+
+        console.table(team);
+        outputBox.textContent = "console.table is working as intended";
+      }
+
+      catch (err){
+        console.error("Error: ", err.message);
+      }
+
+      finally {
+        console.log("Button Working");
+      }
     });
     errorBtns[11].addEventListener("click", () => {
       console.time("Tracking Timer");
@@ -160,6 +179,9 @@
     errorBtns[13].addEventListener("click", () => {
       console.trace("Trace");
     });
+
+
+
   </script>
 </body>
 
