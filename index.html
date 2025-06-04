@@ -102,6 +102,64 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener("click", () => {
+      console.log("Log Message");
+    });
+    errorBtns[1].addEventListener("click", () => {
+      console.error("Error Message");
+    });
+    errorBtns[2].addEventListener("click", () => {
+      console.count("Count Clicked");
+    });
+    errorBtns[3].addEventListener("click", () => {
+      console.warn("Warning Message");
+    });
+    errorBtns[4].addEventListener("click", () => {
+      const val1 = 10;
+      console.assert(val1 > 13, "Failed: val1 is not greater than 13");
+    });
+    errorBtns[5].addEventListener("click", () => {
+      console.clear();
+    });
+    errorBtns[6].addEventListener("click", () => {
+      const fieldset = document.querySelector("fieldset");
+      console.dir(fieldset);
+    });
+    errorBtns[7].addEventListener("click", () => {
+      console.dirxml(document.body);
+    });
+    errorBtns[8].addEventListener("click", () => {
+      console.group("Grouped Logs");
+      console.log("Log 1");
+      console.log("Log 2");
+      console.group("Inner Group");
+      console.log("Log 2.1");
+    });
+    errorBtns[9].addEventListener("click", () => {
+      console.groupEnd();
+    });
+    errorBtns[10].addEventListener("click", () => {
+      console.table([
+        { name: "Gautam", role: "Team Lead Dictator"},
+        { name: "Carl", role: "GLUE GUYYY RAHHHH" },
+        { name: "Vicky", role: "UI QUEEN" },
+        { name: "Emily", role: "FIGMA QUEEN" },
+        { name: "Aarush", role: "Other Team Lead (ig) xD" },
+        { name: "Srideep", role: "localStorage Hero" },
+        { name: "Eric", role: "He's just there :)" },
+        { name: "Mark", role: "TESTING GENIUSSSS" },
+        { name: "Kilhoon", role: "JSDocs Savior" }
+      ]);
+    });
+    errorBtns[11].addEventListener("click", () => {
+      console.time("Tracking Timer");
+    });
+    errorBtns[12].addEventListener("click", () => {
+      console.timeEnd("Tracking Timer");
+    });
+    errorBtns[13].addEventListener("click", () => {
+      console.trace("Trace");
+    });
   </script>
 </body>
 
