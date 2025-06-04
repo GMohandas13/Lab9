@@ -84,12 +84,29 @@
       <button>End Timer</button>
       <button>Console Trace</button>
       <button>Trigger a Global Error</button>
+      <!--comment out the div under this to see the try catch finally in action-->
       <div id="team-output"></div>
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+  window.TrackJS && TrackJS.install({ 
+    token: "44f5159905404a7593ba894ac2964f0d"
+    // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <script>
     let form = document.querySelector('form');
+
+    class ValidationError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+      }
+    }
+
     form.addEventListener('submit', e => {
       e.preventDefault();
       let output = document.querySelector('output');
@@ -155,7 +172,7 @@
         const outputBox = document.querySelector("#team-output");
 
         if(!outputBox){
-          throw new Error("team-output div is not there");
+          throw new ValidationError("team-output div is not there");
         }
 
         console.table(team);
@@ -163,11 +180,15 @@
       }
 
       catch (err){
-        console.error("Error: ", err.message);
+        if (err instanceof ValidationError) {
+          console.error("ValidationError: ", err.message);
+        }
+        else {
+          console.error("Other error: ", err.message);
+        }
       }
-
       finally {
-        console.log("Button Working");
+        console.log("Button Clicked");
       }
     });
     errorBtns[11].addEventListener("click", () => {
@@ -179,9 +200,17 @@
     errorBtns[13].addEventListener("click", () => {
       console.trace("Trace");
     });
-
-
-
+    errorBtns[14].addEventListener("click", () => {
+      try {
+        notAFunction();
+      }
+      catch (err){
+        console.log("Error Caught: ", err.message);
+        if (window.trackJS){
+          trackJS.track(err)
+        }
+      }
+    });
   </script>
 </body>
 
